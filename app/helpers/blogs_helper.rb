@@ -6,4 +6,4 @@ module BlogsHelper
         blog_path
       end
     end
-  end
+end
