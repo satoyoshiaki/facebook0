@@ -1,33 +1,20 @@
-<%= form_with(model: blog, local: true) do |form| %>
-  <% if blog.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
-
-      <ul>
-      <% blog.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<%= form_with(model: @blog, local: true ,url: choose_new_or_edit ) do |form| %>
+    <% if @blog.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
+        <ul>
+        <% @blog.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+            
+      <div class="blog_image">
+        <%= form.label :写真 %>
+        <%= form.text_field :content %>
+      </div>
+      <%= form.submit "OK" %>
+    <% end %>
 
-  <div class="field">
-    <%= form.label :taitle %>
-    <%= form.text_field :taitle %>
-  </div>
-
-  <div class="field">
-    <%= form.label :context %>
-    <%= form.text_area :context %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
-
+    <%= link_to "投稿一覧へ戻る", blogs_path %>

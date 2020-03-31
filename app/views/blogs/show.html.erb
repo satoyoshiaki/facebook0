@@ -1,19 +1,5 @@
-<p id="notice"><%= notice %></p>
+<h1>ブログ詳細画面</h1>
+<p>写真: <%= @blog.image %></p>
+<p>内容: <%= @blog.content %></p>
 
-<p>
-  <strong>Taitle:</strong>
-  <%= @blog.taitle %>
-</p>
-
-<p>
-  <strong>Context:</strong>
-  <%= @blog.context %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @blog.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_blog_path(@blog) %> |
-<%= link_to 'Back', blogs_path %>
+<%= link_to 'ブログ一覧画面に戻る', blogs_path %>
