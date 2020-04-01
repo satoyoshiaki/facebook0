@@ -1,12 +1,14 @@
 <h1>ブログ一覧</h1>
 <table>
   <tr>
+    <th>名前</th>
     <th>写真</th>
     <th>内容</th>
   </tr>
 <% @blogs.each do |blog| %>
   <tr>
-    <td><%= blog.image %></td>
+    <td><%= blog.user.name %></td>
+    <td><%= image_tag blog.image.to_s %></td>
     <td><%= blog.content %></td>
     <td><%= link_to '詳細を確認する', blog_path(blog.id) %></td>
     <td><%= link_to "ブログを編集する", edit_blog_path(blog.id) %></td>
