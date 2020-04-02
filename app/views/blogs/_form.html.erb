@@ -1,17 +1,17 @@
 <%= form_with(model: @blog, local: true ,url: choose_new_or_edit ) do |form| %>
         <div class="field">
-        <%= form.label :image %>
+        <%= form.label :写真 %>
         <%= image_tag(@blog.image.url) if @blog.image && @blog.image.url %>
         <%= form.file_field :image %>
         <%= form.hidden_field :image_cache %>
         </div>
         <div class="blog_content">
-          <%= form.label :content %>
+          <%= form.label :内容 %>
           <%= form.text_field :content %>
         </div>
-        <%= form.submit %>
+        <%= form.submit value="投稿"%>
       <% end %>
-      <%= link_to "ブログ一覧画面にもどる", blogs_path %>
+      <%= link_to "投稿一覧画面にもどる", blogs_path %>
 
 
       
