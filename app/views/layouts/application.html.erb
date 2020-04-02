@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LoginExam</title>
+    <title>偽facebook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,10 @@
   </head>
 
   <body>
+    <header>
+      <h1>偽facebook</h1>
+    </header>
+    
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
@@ -20,6 +24,6 @@
       <%= link_to "Sign up", new_user_path %>
       <%= link_to "Login", new_session_path %>
     <% end %>
-    <%= yield %>
+    <div class = "wrapper"><%= yield %></dive>
   </body>
 </html>
