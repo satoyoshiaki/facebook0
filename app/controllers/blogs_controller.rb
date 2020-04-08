@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy ]
-  before_action :login_judge
+  before_action :login_judge, only: [:create, :edit, :update, :destroy, :new ]
 
   def index
     @blogs = Blog.all
