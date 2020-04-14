@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: [:show, :edit, :update, :destroy ]
-  before_action :login_judge, only: [:create, :edit, :update, :destroy, :new ]
+  before_action :set_blog, only: [:edit, :update, :destroy ]
+  before_action :login_judge, only: [:create, :edit, :update, :destroy, :new, :show ]
 
   def index
     @blogs = Blog.all
@@ -12,7 +12,7 @@ class BlogsController < ApplicationController
   end
 
   def show
-    # @blog = Blog.find(params[:id])
+    @blog = Blog.find(params[:id])
     @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
 
@@ -23,7 +23,8 @@ class BlogsController < ApplicationController
       render :new
     else
       if @blog.save
-        redirect_to blogs_path, notice: "ブログを作成しました！"
+        ContactMailer.contact_mail(@blog).deliver
+        redirect_to blogs_path, notice: "投稿を作成しました！"
       else
         render :new
       end
@@ -46,8 +47,10 @@ class BlogsController < ApplicationController
   end
 
   def favorites_index
-    @blog = Blog.find(params[:id])
-    @blog = current_user.favorite_blogs.order(created_at: "DESC")
+    # @blog = Blog.find(params[:id])
+    # @blog = current_user.favorite_blogs.order(created_at: "DESC")
+    @user = User.find(params[:id])
+    @blog = Blog.where(user_id: @user.id)
   end
 
   def confirm
@@ -60,6 +63,9 @@ class BlogsController < ApplicationController
   end
   def set_blog
     @blog = Blog.find(params[:id])
+    unless current_user == @blog.user
+      redirect_to blogs_path, notice: "他人の投稿はいじれません"
+    end
   end
   def login_judge
     unless logged_in?
