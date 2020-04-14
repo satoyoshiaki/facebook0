@@ -8,10 +8,11 @@
       </tr>
   </thead>
   <tbody>
-    <% @user.favorite.each do |favorite| %>
+    <% @user.favorites.each do |favorite| %>
       <tr>
-        <td><%= favorite.blog_id %></td>
-      
+        <td><%= favorite.user.name %></td>
+        <td><%= image_tag favorite.blog.image.url %></td>
+        <td><%= favorite.blog.content %></td>
       </tr>
     <% end %>
   </tbody>

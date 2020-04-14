@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   resources :blogs do
     collection do
       post :confirm
-      get :favorites_index
     end
   end
+  get "blogs/favorites_index/:id" => "blogs#favorites_index", as: 'favorites_index'
+  # get :favorites_index
   root to: 'sessions#new'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-end
+end 
