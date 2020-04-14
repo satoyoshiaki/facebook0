@@ -1,13 +1,9 @@
 
 
-
-
-
 class UsersController < ApplicationController
   before_action only: [:create, :edit, :update, :destroy, :new, :show]
     def show
         @user = User.find(params[:id])
-        @favorite = Favorite.where(user_id: current_user.id)
         
 
     end
