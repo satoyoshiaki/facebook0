@@ -1,0 +1,20 @@
+<h3>お気に入り一覧</h3>
+<table>
+  <thead>
+      <tr>
+        <th>名前</th>
+        <th>写真</th>
+        <th>投稿</th>
+      </tr>
+  </thead>
+  <tbody>
+    <% @user.blogs.each do |blog| %>
+      <tr>
+        <td><%= favorite.blog.user.name %></td>
+        <td><%= image_tag blog.image.to_s %></td>
+        <td><%= blog.content %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to '投稿一覧画面に戻る', blogs_path %>

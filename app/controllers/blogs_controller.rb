@@ -10,8 +10,10 @@ class BlogsController < ApplicationController
     # @blog = Blog.new
     @blog = current_user.blogs.build
   end
+
   def show
-    @blog = Blog.find(params[:id])
+    # @blog = Blog.find(params[:id])
+    @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
 
   def create
@@ -42,6 +44,12 @@ class BlogsController < ApplicationController
     @blog.destroy
     redirect_to blogs_path, notice:"投稿を削除しました！"
   end
+
+  def favorites_index
+    @blog = Blog.find(params[:id])
+    @blog = current_user.favorite_blogs.order(created_at: "DESC")
+  end
+
   def confirm
     @blog = current_user.blogs.build(blog_params)
     render :new if @blog.invalid?

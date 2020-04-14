@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   before_action only: [:create, :edit, :update, :destroy, :new, :show]
     def show
         @user = User.find(params[:id])
+        
+
     end
     def new
       @user = User.new
