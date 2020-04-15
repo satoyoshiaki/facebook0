@@ -6,8 +6,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       flash[:danger] = 'ログインに成功しました'
       session[:user_id] = user.id
-    　redirect_to blogs_path　
-      　
+      redirect_to blogs_path
+      
     else
       flash[:danger] = 'ログインに失敗しました'
       render :new
