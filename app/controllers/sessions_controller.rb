@@ -4,9 +4,10 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
+      flash[:danger] = 'ログインに成功しました'
       session[:user_id] = user.id
-      # redirect_to user_path(user.id)　　　　
-      redirect_to　　　　　　　　#ここ追加しました
+    　redirect_to blogs_path　
+      　
     else
       flash[:danger] = 'ログインに失敗しました'
       render :new
